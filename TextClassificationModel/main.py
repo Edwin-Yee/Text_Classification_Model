@@ -7,6 +7,7 @@
 #   regex: https://www.pythontutorial.net/python-regex/python-regex-sub/
 #   regex: https://www.w3schools.com/jsref/jsref_regexp_wordchar_non.asp
 #   numpy zeros: https://www.geeksforgeeks.org/numpy-zeros-python/
+#   tfdif: https://www.askpython.com/python/examples/tf-idf-model-from-scratch
 #
 # import keras
 #
@@ -44,7 +45,7 @@ def tokenize_sentence(sentences):
 def word_extraction(sentence):
     # ignore = ['a', "the", "is"]
 
-    # split the words list by non-word characters (spaces)
+    # split the words list by non-word characters (spaces/punctuation)
     # replaces the non-word characters with sentence as the input and " " as the replacement
     words = re.sub("\W", " ", sentence).split()
 
@@ -53,10 +54,30 @@ def word_extraction(sentence):
     return cleaned_text
 
 
+def calculate_term_frequency(doc, word):
+    doc_len = len(doc)
+    occurrence = len([token for token in doc if token == word])
+    return occurrence / doc_len
+
+
+def count_dictionary(sentences):
+    word_count = {}     # initialize a dictionary
+    for word in tokenize_sentence(sentences):   # look through all the words
+        word_count[word] = 0    # set the word as the key and set the value (count) to 0
+        for sentence in sentences:  # loop through all the sentences
+            if word in sentence:    # for every word in the sentence update the dictionary
+                # Increment value in the dictionary for that particular
+                # word (which serves as the key)
+                word_count[word] += 1
+    return word_count
+def calculate_inverse_doc_frequency(word):
+
+
 def generate_bag_of_words(inner_all_sentences):
     vocab = tokenize_sentence(inner_all_sentences)
 
-    # Gives the vocabulary list of all the words we know minus the stop words
+    # Gives the vocabulary list of all the words we know minus the stop words (no duplicate words either because
+    # we use a set which does not allow duplicates)
     print("Word List for entire document: ", vocab, "\n")
 
     # Seeing what words are at what index, can see how the sentences are converted to a "bag of words"
@@ -66,7 +87,6 @@ def generate_bag_of_words(inner_all_sentences):
         all_words_with_index.append((i, word))
 
     print(all_words_with_index, "\n")
-
 
     # loop through the sentences passed as parameters
     for sentence in inner_all_sentences:
