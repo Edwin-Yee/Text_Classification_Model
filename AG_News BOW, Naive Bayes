@@ -1,10 +1,11 @@
-Text Classification Model for AG News Dataset using Bag of Words (BOW) and Naive Bayes coded
+Text Classification Model for AG News Dataset using Bag of Words (BOW) and Naive Bayes 
 
 Here is a link to the text classification model that I created in google colab:
 https://colab.research.google.com/drive/1-iKZfR04NH9xxVwom4ugkY07OdQFtZuz?usp=sharing
 
-Runtime is approximately 1 minute. 
-Categorizes a given news headline into one of four categories (world, sports, business, sci/tech) with precision of around 87%.
-Trained on 96,000 headlines and tested on 24,000 headlines. 80/20 train test split.
+The runtime of the training section is about 1 second.
+The runtime of the testing section is approximately 1 minute. 
+The model categorizes a given news headline into one of four categories (world, sports, business, sci/tech) with precision of around 87%.
+It is trained on 96,000 headlines and tested on 24,000 headlines (80/20 train test split).
 
 
